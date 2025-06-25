@@ -1,24 +1,22 @@
-# Use the official OpenJDK 17 image as the base image
+#1 Base Image
+
 FROM openjdk:17-jdk-alpine
 
-# Set metadata
-LABEL maintainer="trainwithshubham@gmail.com"
-LABEL version="1.0"
-LABEL description="A Java Quotes application"
-
-# Set the working directory inside the container
+#2 Working Directory for the App
 WORKDIR /app
 
-# Copy the source code into the container
-COPY src/Main.java /app/Main.java
-
+#3 Code to create the App (Copy from Host to Container)
+COPY src/Main.java Main.java
 COPY quotes.txt quotes.txt
 
-# Compile the Java code
+#4 Run the commands to install the libraries required or compile the code
 RUN javac Main.java
 
-# Expose port 8000 for the HTTP server
+#5 Expose the port on which your application listens
 EXPOSE 8000
 
-# Run the Java application when the container starts
-CMD ["java", "Main"]
+#6 Serve the application and in continous mode
+CMD ["java","Main"] 
+
+
+
